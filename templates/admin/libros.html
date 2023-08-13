@@ -1,0 +1,81 @@
+{% include 'admin/cabecera.html' %}
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header">
+                    Datos del libro
+                </div>
+                <div class="card-body">
+                   
+                    <form action="/admin/libros/guardar" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                          <label for="txtNombre" class="form-label">Name</label>
+                          <input type="text"
+                            class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del Libro">
+                          
+                        </div>
+                        <div class="mb-3">
+                          <label for="txtimagen" class="form-label">Imagen:</label>
+                          <input type="file"
+                            class="form-control" name="txtimagen" id="txtimagen" aria-describedby="helpId" placeholder="Agregar Imagen del libro">
+                          
+                        </div>
+                        <div class="mb-3">
+                          <label for="txtURL" class="form-label">URL Descarga</label>
+                          <input type="text"
+                            class="form-control" name="txtURL" id="txtURL" aria-describedby="helpId" placeholder="Escriba la URL de descarga del libro">
+                         
+                        </div>
+
+
+                        <button type="submit" class="btn btn-dark">Agregar</button>
+                    </form>
+
+                </div>
+                <div class="card-footer text-muted">
+                    Footer
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            
+            <div class="table-responsive">
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>URL</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Python</td>
+                            <td>imagen.jpg</td>
+                            <td>link</td>
+                            <td>Eliminar</td>
+
+                        </tr>
+                        <tr class="">
+                            <td scope="row">Item</td>
+                            <td>Item</td>
+                            <td>Item</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+{% include 'admin/pie.html' %}
