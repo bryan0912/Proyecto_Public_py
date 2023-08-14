@@ -1,5 +1,16 @@
 from flask import Flask 
 from flask import render_template, request, redirect
+from flaskext.mysql import MySQL
+
+
+app=Flask(__name__)
+mysql=MySQL()
+
+app.config['MYSQL_DATABASE_HOST']='localhost'
+app.config['MYSQL_DATABASE_USER']='root'
+app.config['MYSQL_DATABASE_PASSWORD']=''
+app.config['MYSQL_DATABASE_DB']='sitio'
+mysql.init_app(app)
 
 app=Flask(__name__)
 
@@ -26,14 +37,25 @@ def admin_login():
 
 @app.route('/admin/libros')
 def admin_libros():
+    conexion=mysql.connect()
+    print(conexion)
     return render_template('/admin/libros.html') 
 
 @app.route('/admin/libros/guardar', methods=['POST'])
 def admin_libros_guardar():
 
     _nombre=request.form['txtNombre']
-    _URL=request.form['txtURL']
+    _url=request.form['txtURL']
     _archivo=request.files['txtimagen']
+
+    sql="INSERT INTO `libros` (`id`, `nombre`, `imagen`, `url`) VALUES (NULL,%s,%s,%s);"
+    datos=(_nombre,_archivo.filename,_url)
+
+    conexion= mysql.connect()
+    cursor=conexion.cursor()
+    cursor.execute(sql)
+    conexion.commit()
+
     print(_nombre)
     print(_URL)
     print(_archivo)
